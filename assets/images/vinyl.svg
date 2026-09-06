@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Outer Vinyl Rim -->
+  <circle cx="50" cy="50" r="48" fill="#0a0a0a" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Vinyl Sound Grooves (Concentric Circles) -->
+  <circle cx="50" cy="50" r="43" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1"/>
+  <circle cx="50" cy="50" r="39" fill="none" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.2"/>
+  <circle cx="50" cy="50" r="35" fill="none" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
+  <circle cx="50" cy="50" r="31" fill="none" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.5"/>
+  <circle cx="50" cy="50" r="27" fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1"/>
+  <circle cx="50" cy="50" r="23" fill="none" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.2"/>
+
+  <!-- Light Reflection / Sheen Flares -->
+  <path d="M50 2 A48 48 0 0 1 85 15 L50 50 Z" fill="rgba(255, 255, 255, 0.08)"/>
+  <path d="M50 98 A48 48 0 0 1 15 85 L50 50 Z" fill="rgba(255, 255, 255, 0.08)"/>
+
+  <!-- Center White Vinyl Label -->
+  <circle cx="50" cy="50" r="17" fill="#ffffff"/>
+  <circle cx="50" cy="50" r="13" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="2 1"/>
+  
+  <!-- Spindle Hole -->
+  <circle cx="50" cy="50" r="4" fill="#0a0a0a"/>
+</svg>
