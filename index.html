@@ -4,10 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark light">
   <meta name="description"
     content="Portofolio Muhammad Ghani Aqila - Pelajar SMK Telkom Purwokerto, Web Developer, UI/UX Enthusiast, dan AI Explorer.">
   <meta name="author" content="Muhammad Ghani Aqila">
   <title>ganigani | Portfolio</title>
+
+  <!-- Anti-FOUC Theme Script -->
+  <script>
+    (function() {
+      const t = localStorage.getItem('portfolio_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
@@ -70,30 +79,21 @@
       <a href="#" class="nav-logo">
         <div class="logo-vinyl-icon">
           <svg viewBox="0 0 100 100" width="38" height="38" aria-label="Vinyl Record Logo">
-            <circle cx="50" cy="50" r="48" fill="#0a0a0a" stroke="#ffffff" stroke-width="2.5" />
-            <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1" />
-            <circle cx="50" cy="50" r="37" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.5" />
-            <circle cx="50" cy="50" r="32" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" />
-            <circle cx="50" cy="50" r="27" fill="none" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.2" />
-            <circle cx="50" cy="50" r="22" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1" />
-            <path d="M50 2 A48 48 0 0 1 85 15 L50 50 Z" fill="rgba(255, 255, 255, 0.1)" />
-            <path d="M50 98 A48 48 0 0 1 15 85 L50 50 Z" fill="rgba(255, 255, 255, 0.1)" />
-            <circle cx="50" cy="50" r="16" fill="#ffffff" />
-            <circle cx="50" cy="50" r="12" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="2 1" />
-            <circle cx="50" cy="50" r="4" fill="#0a0a0a" />
+            <circle cx="50" cy="50" r="48" fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="2.5" />
+            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--color-border)" stroke-width="1" />
+            <circle cx="50" cy="50" r="37" fill="none" stroke="var(--color-border-glow)" stroke-width="1.5" />
+            <circle cx="50" cy="50" r="32" fill="none" stroke="var(--color-border)" stroke-width="1" />
+            <circle cx="50" cy="50" r="27" fill="none" stroke="var(--color-border-glow)" stroke-width="1.2" />
+            <circle cx="50" cy="50" r="22" fill="none" stroke="var(--color-border)" stroke-width="1" />
+            <path d="M50 2 A48 48 0 0 1 85 15 L50 50 Z" fill="var(--color-border)" />
+            <path d="M50 98 A48 48 0 0 1 15 85 L50 50 Z" fill="var(--color-border)" />
+            <circle cx="50" cy="50" r="16" fill="var(--color-text)" />
+            <circle cx="50" cy="50" r="12" fill="none" stroke="var(--color-bg)" stroke-width="1" stroke-dasharray="2 1" />
+            <circle cx="50" cy="50" r="4" fill="var(--color-bg)" />
           </svg>
         </div>
         <span class="logo-text">ganigani</span>
       </a>
-
-      <button class="mobile-toggle" id="mobile-toggle" aria-label="Buka Menu Navigasi">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
 
       <ul class="nav-links" id="nav-links">
         <li><a href="#tentang" class="nav-link">Tentang</a></li>
@@ -103,6 +103,36 @@
         <li><a href="#proyek" class="nav-link">Proyek</a></li>
         <li><a href="#kontak" class="nav-link">Kontak</a></li>
       </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Beralih Tema">
+          <!-- Sun Icon (Gelap -> Terang) -->
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (Terang -> Gelap) -->
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Buka Menu Navigasi">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -694,7 +724,8 @@
     </section>
   </main>
 
-  <!-- JavaScript File -->
+  <!-- JavaScript Files -->
+  <script src="js/theme.js"></script>
   <script src="js/script.js"></script>
 </body>
 

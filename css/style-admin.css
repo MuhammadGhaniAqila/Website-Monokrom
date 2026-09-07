@@ -3,9 +3,11 @@
    Portfolio Website Admin Dashboard
    ========================================================================== */
 
-:root {
+:root,
+[data-theme="dark"] {
   --bg-primary: #0a0a0c;
   --bg-surface: #121216;
+  --bg-topbar: rgba(18, 18, 22, 0.8);
   --bg-card: #18181f;
   --bg-card-hover: #22222b;
   --bg-input: #0f0f14;
@@ -40,6 +42,29 @@
   --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.8);
   
   --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f4f5f9;
+  --bg-surface: #ffffff;
+  --bg-topbar: rgba(255, 255, 255, 0.85);
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f2f8;
+  --bg-input: #f8f9fc;
+  --border-color: rgba(15, 23, 42, 0.1);
+  --border-focus: rgba(15, 23, 42, 0.3);
+  
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  
+  --accent-white: #0f172a;
+  --accent-glow: rgba(15, 23, 42, 0.08);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+  color-scheme: light;
 }
 
 /* Reset & Base */
@@ -317,7 +342,7 @@ button, input, textarea, select {
 
 .topbar {
   height: 64px;
-  background: rgba(18, 18, 22, 0.8);
+  background: var(--bg-topbar);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
   padding: 0 2rem;
