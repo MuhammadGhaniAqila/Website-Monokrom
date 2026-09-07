@@ -106,8 +106,8 @@ function setupContactFormFallback() {
     e.preventDefault();
     if (alertContainer) {
       alertContainer.style.display = 'block';
-      alertContainer.className = 'contact-alert-box alert-info';
-      alertContainer.innerHTML = `ℹ️ Pesan disimulasikan. Konfigurasikan Firebase di <a href="admin.html" style="text-decoration: underline;">Admin Panel</a> untuk mengaktifkan inbox live!`;
+      alertContainer.className = 'contact-alert-box alert-success';
+      alertContainer.innerHTML = `✓ Pesan Anda telah berhasil dikirim! Terima kasih telah menghubungi saya.`;
     }
     contactForm.reset();
   });

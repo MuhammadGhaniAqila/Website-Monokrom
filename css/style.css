@@ -1183,23 +1183,9 @@ textarea.form-input-custom {
   margin-top: 3rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
-}
-
-.footer-admin-link {
-  color: var(--color-text-muted);
-  text-decoration: none;
-  font-size: 0.8rem;
-  transition: color var(--transition-fast);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.footer-admin-link:hover {
-  color: var(--color-text);
 }
 
 /* --- RESPONSIVE MEDIA QUERIES --- */
