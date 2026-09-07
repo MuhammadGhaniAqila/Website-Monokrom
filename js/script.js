@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadingScreen = document.getElementById('loading-screen');
   
   if (loadingScreen) {
-    // Sembunyikan loading screen setelah 2.3 detik
+    // Sembunyikan loading screen setelah 2.9 detik (seusai animasi turntable & vinyl)
     setTimeout(() => {
       loadingScreen.classList.add('hide');
       
@@ -17,28 +17,39 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         loadingScreen.style.display = 'none';
       }, 600);
-    }, 2300);
+    }, 2900);
   }
 
   /* --- 2. TYPEWRITER EFFECT IN HERO --- */
   const typewriterElement = document.getElementById('typewriter');
   
   if (typewriterElement) {
-    const phrases = [
-      "Muhammad Ghani Aqila.",
-      "Seorang Pelajar SMK.",
-      "Web Developer.",
-      "UI/UX Enthusiast.",
-      "AI Explorer."
-    ];
+    let phrases = (window.I18nController && window.I18nController.getTypewriterPhrases)
+      ? window.I18nController.getTypewriterPhrases()
+      : [
+        "Muhammad Ghani Aqila.",
+        "Seorang Pelajar SMK.",
+        "Web Developer.",
+        "UI/UX Enthusiast.",
+        "AI Explorer."
+      ];
     
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     let typingSpeed = 100; // Kecepatan mengetik (ms)
+
+    window.updateTypewriterPhrases = (newPhrases) => {
+      if (Array.isArray(newPhrases) && newPhrases.length > 0) {
+        phrases = newPhrases;
+        phraseIndex = 0;
+        charIndex = 0;
+        isDeleting = false;
+      }
+    };
     
     function typeEffect() {
-      const currentPhrase = phrases[phraseIndex];
+      const currentPhrase = phrases[phraseIndex] || phrases[0];
       
       if (isDeleting) {
         // Hapus karakter
@@ -130,5 +141,102 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  /* --- 6. BACKGROUND MUSIC & FLOATING PLAYER CONTROLLER --- */
+  const bgAudio = document.getElementById('bg-audio');
+  const musicWidget = document.getElementById('music-player-widget');
+  const widgetPlayBtn = document.getElementById('widget-play-btn');
+  const widgetStatusText = document.getElementById('widget-song-status');
+
+  if (bgAudio && musicWidget) {
+    let isPlaying = false;
+
+    function playAudio() {
+      bgAudio.muted = false;
+      const playPromise = bgAudio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isPlaying = true;
+          musicWidget.classList.remove('paused');
+          musicWidget.classList.add('playing');
+          if (widgetStatusText) widgetStatusText.textContent = 'rumahsakit';
+          removeGestureListeners();
+        }).catch(err => {
+          console.log('Autoplay unmuted blocked by browser policy, fallback muted until initial interaction:', err.message);
+          bgAudio.muted = true;
+          bgAudio.play().then(() => {
+            isPlaying = true;
+            musicWidget.classList.remove('paused');
+            musicWidget.classList.add('playing');
+            if (widgetStatusText) widgetStatusText.textContent = 'rumahsakit';
+          }).catch(e => {
+            console.log('Autoplay fallback error:', e);
+          });
+        });
+      }
+    }
+
+    function pauseAudio() {
+      bgAudio.pause();
+      isPlaying = false;
+      musicWidget.classList.remove('playing');
+      musicWidget.classList.add('paused');
+      if (widgetStatusText) widgetStatusText.textContent = 'rumahsakit (Jeda)';
+    }
+
+    function toggleAudio() {
+      if (isPlaying && !bgAudio.paused && !bgAudio.muted) {
+        pauseAudio();
+      } else {
+        bgAudio.muted = false;
+        playAudio();
+      }
+    }
+
+    const forceUnmute = () => {
+      if (!bgAudio) return;
+      bgAudio.muted = false;
+      const promise = bgAudio.play();
+      if (promise !== undefined) {
+        promise.then(() => {
+          isPlaying = true;
+          musicWidget.classList.remove('paused');
+          musicWidget.classList.add('playing');
+          if (widgetStatusText) widgetStatusText.textContent = 'rumahsakit';
+          removeGestureListeners();
+        }).catch(err => {
+          // Tetap tunggu gestur berikutnya tanpa mematikan listener
+        });
+      }
+    };
+
+    const triggerEvents = ['mousemove', 'mouseenter', 'pointermove', 'mouseover', 'focus', 'click', 'pointerdown', 'touchstart', 'keydown', 'scroll'];
+
+    function removeGestureListeners() {
+      triggerEvents.forEach(evt => {
+        window.removeEventListener(evt, forceUnmute);
+        document.removeEventListener(evt, forceUnmute);
+      });
+    }
+
+    triggerEvents.forEach(evt => {
+      window.addEventListener(evt, forceUnmute, { passive: true });
+      document.addEventListener(evt, forceUnmute, { passive: true });
+    });
+
+    // Jalankan langsung
+    playAudio();
+    window.addEventListener('load', forceUnmute, { once: true });
+    window.addEventListener('pageshow', forceUnmute, { once: true });
+
+    // Pasang listener pada tombol Play/Pause di widget kanan bawah
+    if (widgetPlayBtn) {
+      widgetPlayBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleAudio();
+      });
+    }
+  }
 
 });

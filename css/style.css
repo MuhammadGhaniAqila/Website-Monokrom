@@ -225,31 +225,104 @@ body {
   pointer-events: none;
 }
 
-.loader-icons {
-  display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.icon-circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
+/* Turntable Vinyl Animation Wrapper */
+.turntable-animation-wrapper {
+  position: relative;
+  width: 170px;
+  height: 170px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text);
-  background: var(--color-card);
-  animation: pulseCircle 1.8s infinite ease-in-out alternate;
+  margin-bottom: 2rem;
 }
 
-.icon-circle:nth-child(2) { animation-delay: 0.3s; }
-.icon-circle:nth-child(3) { animation-delay: 0.6s; }
+.turntable-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
 
-@keyframes pulseCircle {
-  0% { transform: scale(1); border-color: var(--color-border); }
-  100% { transform: scale(1.1); border-color: var(--color-text); box-shadow: 0 0 15px var(--color-border-glow); }
+/* 1. Vinyl Drop & Spin Keyframes */
+.vinyl-group {
+  transform-origin: 90px 95px;
+  animation: dropVinyl 1.1s cubic-bezier(0.34, 1.25, 0.64, 1) forwards, spinVinyl 3.2s linear 1.1s infinite;
+}
+
+@keyframes dropVinyl {
+  0% {
+    opacity: 0;
+    transform: translate(-45px, -100px) scale(1.45) rotate(-65deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(0px, 0px) scale(0.96) rotate(6deg);
+  }
+  85% {
+    transform: translate(0px, 0px) scale(1.02) rotate(-3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes spinVinyl {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 2. Tonearm Pivot onto Record */
+.tonearm-group {
+  transform-origin: 160px 38px;
+  transform: rotate(-38deg);
+  animation: pivotArm 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
+}
+
+@keyframes pivotArm {
+  0% {
+    transform: rotate(-38deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 3. Soundwave Rings */
+.sound-wave-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  margin-left: -65px;
+  margin-top: -65px;
+  border-radius: 50%;
+  border: 1px stroke var(--color-border-glow);
+  box-shadow: 0 0 15px var(--color-border-glow);
+  opacity: 0;
+  pointer-events: none;
+  animation: wavePulse 2.2s cubic-bezier(0.1, 0.8, 0.3, 1) 1.35s infinite;
+}
+
+.sound-wave-ring.ring-2 {
+  animation-delay: 2.3s;
+}
+
+@keyframes wavePulse {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.7;
+    border-color: var(--color-text);
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+    border-color: transparent;
+  }
 }
 
 .loader-text {
@@ -415,6 +488,7 @@ body {
   cursor: pointer;
   transition: all var(--transition-fast);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -463,6 +537,49 @@ body {
 @keyframes rotateMoon {
   from { transform: rotate(90deg) scale(0.5); opacity: 0; }
   to { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+/* --- LANGUAGE SWITCHER BUTTONS --- */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 3px;
+  gap: 2px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color var(--transition-fast);
+}
+
+.lang-switcher:hover {
+  border-color: var(--color-border-glow);
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.3rem 0.55rem;
+  border-radius: 14px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
+  line-height: 1;
+  font-family: var(--font-body);
+}
+
+.lang-btn:hover {
+  color: var(--color-text);
+}
+
+.lang-btn.active {
+  background: var(--color-text);
+  color: var(--color-bg);
+  box-shadow: 0 0 10px var(--color-border-glow);
 }
 
 /* --- 3. HERO SECTION --- */
@@ -1264,5 +1381,186 @@ textarea.form-input-custom {
 
   .btn {
     width: 100%;
+  }
+}
+
+/* --- FLOATING MUSIC PLAYER WIDGET (BOTTOM RIGHT) --- */
+.music-player-widget {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 990;
+  background: var(--color-navbar-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 40px;
+  padding: 0.5rem 0.85rem 0.5rem 0.5rem;
+  box-shadow: 0 8px 30px var(--color-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all var(--transition-fast);
+}
+
+.music-player-widget:hover {
+  border-color: var(--color-text);
+  box-shadow: 0 10px 35px var(--color-border-glow);
+  transform: translateY(-2px);
+}
+
+.music-player-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Vinyl Album Art Record in Widget */
+.widget-vinyl-wrapper {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.widget-vinyl-record {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #0d0d0d;
+  border: 1.5px solid var(--color-border-glow);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.widget-album-art {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  z-index: 2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+.vinyl-center-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  margin-top: -2.5px;
+  background-color: var(--color-bg);
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+.vinyl-groove-ring {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border-radius: 50%;
+  border: 1px stroke rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.music-player-widget.playing .widget-vinyl-record {
+  animation: spinVinylWidget 3.5s linear infinite;
+}
+
+.music-player-widget.paused .widget-vinyl-record {
+  animation: spinVinylWidget 3.5s linear infinite;
+  animation-play-state: paused;
+}
+
+@keyframes spinVinylWidget {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.widget-song-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 130px;
+}
+
+.widget-song-title {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.widget-song-status {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.widget-play-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-text);
+  color: var(--color-bg);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.widget-play-btn:hover {
+  transform: scale(1.1);
+  background: var(--color-btn-hover-bg);
+}
+
+.widget-play-btn:active {
+  transform: scale(0.92);
+}
+
+.music-player-widget.playing .icon-play {
+  display: none;
+}
+
+.music-player-widget.playing .icon-pause {
+  display: block;
+}
+
+.music-player-widget.paused .icon-play {
+  display: block;
+}
+
+.music-player-widget.paused .icon-pause {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .music-player-widget {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.4rem 0.65rem 0.4rem 0.4rem;
+  }
+  .widget-song-info {
+    max-width: 95px;
   }
 }

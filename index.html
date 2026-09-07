@@ -10,11 +10,14 @@
   <meta name="author" content="Muhammad Ghani Aqila">
   <title>ganigani | Portfolio</title>
 
-  <!-- Anti-FOUC Theme Script -->
+  <!-- Anti-FOUC Theme & Language Script -->
   <script>
-    (function() {
+    (function () {
       const t = localStorage.getItem('portfolio_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
+
+      const l = localStorage.getItem('portfolio_lang') || 'id';
+      document.documentElement.setAttribute('lang', l);
     })();
   </script>
 
@@ -32,37 +35,65 @@
        1. LOADING SCREEN (INTRO)
        ========================================== -->
   <div id="loading-screen">
-    <div class="loader-icons">
-      <!-- Icon Code -->
-      <div class="icon-circle">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="16 18 22 12 16 6"></polyline>
-          <polyline points="8 6 2 12 8 18"></polyline>
-        </svg>
-      </div>
-      <!-- Icon Person -->
-      <div class="icon-circle">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-      </div>
-      <!-- Icon Globe -->
-      <div class="icon-circle">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="2" y1="12" x2="22" y2="12"></line>
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-        </svg>
-      </div>
+    <div class="turntable-animation-wrapper">
+      <svg class="turntable-svg" viewBox="0 0 200 200" width="160" height="160"
+        aria-label="Turntable Vinyl Loading Animation">
+        <defs>
+          <filter id="vinylGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="rgba(255, 255, 255, 0.25)" />
+          </filter>
+        </defs>
+
+        <!-- 1. Turntable Base Deck -->
+        <rect x="15" y="15" width="170" height="170" rx="16" fill="var(--color-bg-alt)" stroke="var(--color-border)"
+          stroke-width="2" />
+        <!-- Accent Buttons -->
+        <circle cx="34" cy="166" r="6" fill="none" stroke="var(--color-border-glow)" stroke-width="1.5" />
+        <circle cx="34" cy="166" r="2.5" fill="var(--color-text)" />
+        <rect x="154" y="125" width="12" height="34" rx="3" fill="none" stroke="var(--color-border)" stroke-width="1" />
+        <line x1="160" y1="130" x2="160" y2="154" stroke="var(--color-text-muted)" stroke-width="1" />
+        <rect x="157" y="138" width="6" height="5" rx="1" fill="var(--color-text)" />
+
+        <!-- 2. Turntable Platter Outer Ring -->
+        <circle cx="90" cy="95" r="64" fill="none" stroke="var(--color-border)" stroke-width="1.5"
+          stroke-dasharray="4 3" />
+
+        <!-- 3. VINYL RECORD (Animates dropping from top into turntable spindle) -->
+        <g class="vinyl-group">
+          <circle cx="90" cy="95" r="58" fill="#0a0a0a" stroke="var(--color-text)" stroke-width="1.5"
+            filter="url(#vinylGlow)" />
+          <circle cx="90" cy="95" r="50" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" />
+          <circle cx="90" cy="95" r="42" fill="none" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1" />
+          <circle cx="90" cy="95" r="34" fill="none" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1" />
+          <circle cx="90" cy="95" r="26" fill="none" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1" />
+          <path d="M90 37 A58 58 0 0 1 131 54 L90 95 Z" fill="rgba(255, 255, 255, 0.08)" />
+          <path d="M90 153 A58 58 0 0 1 49 136 L90 95 Z" fill="rgba(255, 255, 255, 0.08)" />
+          <circle cx="90" cy="95" r="18" fill="var(--color-text)" />
+          <circle cx="90" cy="95" r="14" fill="none" stroke="var(--color-bg)" stroke-width="1" stroke-dasharray="2 1" />
+          <circle cx="90" cy="95" r="5" fill="var(--color-bg)" />
+        </g>
+
+        <!-- Center Spindle Pin -->
+        <circle cx="90" cy="95" r="3" fill="var(--color-text)" />
+
+        <!-- 4. TONEARM (Needle Arm, pivots onto record) -->
+        <g class="tonearm-group">
+          <circle cx="160" cy="38" r="10" fill="var(--color-bg)" stroke="var(--color-text)" stroke-width="1.5" />
+          <circle cx="160" cy="38" r="4" fill="var(--color-text)" />
+          <path d="M160 38 L148 72 L116 82" fill="none" stroke="var(--color-text)" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+          <rect x="108" y="78" width="10" height="8" rx="1.5" fill="var(--color-text)" transform="rotate(15 113 82)" />
+          <circle cx="110" cy="85" r="1.5" fill="#ffffff" />
+        </g>
+      </svg>
+
+      <div class="sound-wave-ring ring-1"></div>
+      <div class="sound-wave-ring ring-2"></div>
     </div>
 
     <div class="loader-text">
-      <p>Welcome To My</p>
-      <h2>PORTFOLIO WEBSITE</h2>
+      <p data-i18n="loader.welcome">Welcome To My</p>
+      <h2 data-i18n="loader.title">PORTFOLIO WEBSITE</h2>
     </div>
 
     <div class="loader-progress-bar">
@@ -88,7 +119,8 @@
             <path d="M50 2 A48 48 0 0 1 85 15 L50 50 Z" fill="var(--color-border)" />
             <path d="M50 98 A48 48 0 0 1 15 85 L50 50 Z" fill="var(--color-border)" />
             <circle cx="50" cy="50" r="16" fill="var(--color-text)" />
-            <circle cx="50" cy="50" r="12" fill="none" stroke="var(--color-bg)" stroke-width="1" stroke-dasharray="2 1" />
+            <circle cx="50" cy="50" r="12" fill="none" stroke="var(--color-bg)" stroke-width="1"
+              stroke-dasharray="2 1" />
             <circle cx="50" cy="50" r="4" fill="var(--color-bg)" />
           </svg>
         </div>
@@ -96,18 +128,26 @@
       </a>
 
       <ul class="nav-links" id="nav-links">
-        <li><a href="#tentang" class="nav-link">Tentang</a></li>
-        <li><a href="#profil" class="nav-link">Profil & Keahlian</a></li>
-        <li><a href="#pendidikan" class="nav-link">Pendidikan</a></li>
-        <li><a href="#perjalanan" class="nav-link">Perjalanan</a></li>
-        <li><a href="#proyek" class="nav-link">Proyek</a></li>
-        <li><a href="#kontak" class="nav-link">Kontak</a></li>
+        <li><a href="#tentang" class="nav-link" data-i18n="nav.about">Tentang</a></li>
+        <li><a href="#profil" class="nav-link" data-i18n="nav.skills">Profil & Keahlian</a></li>
+        <li><a href="#pendidikan" class="nav-link" data-i18n="nav.education">Pendidikan</a></li>
+        <li><a href="#perjalanan" class="nav-link" data-i18n="nav.journey">Perjalanan</a></li>
+        <li><a href="#proyek" class="nav-link" data-i18n="nav.projects">Proyek</a></li>
+        <li><a href="#kontak" class="nav-link" data-i18n="nav.contact">Kontak</a></li>
       </ul>
 
       <div class="nav-actions">
+        <!-- Language Switcher Pill (ID / EN / JV) -->
+        <div class="lang-switcher" id="lang-switcher" title="Pilih Bahasa / Language">
+          <button class="lang-btn active" data-lang="id" aria-pressed="true">ID</button>
+          <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+          <button class="lang-btn" data-lang="jv" aria-pressed="false">JV</button>
+        </div>
+
         <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Beralih Tema">
           <!-- Sun Icon (Gelap -> Terang) -->
-          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -119,7 +159,8 @@
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
           </svg>
           <!-- Moon Icon (Terang -> Gelap) -->
-          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </button>
@@ -147,30 +188,29 @@
 
           <!-- Hero Left Content -->
           <div class="hero-content reveal">
-            <span class="hero-greeting">Halo, Saya</span>
+            <span class="hero-greeting" data-i18n="hero.greeting">Halo, Saya</span>
             <h1 class="hero-title">
               <span id="typewriter" class="typewriter-text"></span><span class="cursor">|</span>
             </h1>
 
-            <p class="hero-description">
+            <p class="hero-description" data-i18n="hero.desc">
               Saya seorang pelajar yang tertarik dengan dunia teknologi, khususnya web development, UI/UX design, dan
               artificial intelligence. Senang mengeksplorasi teknologi baru dan mengubah ide menjadi karya digital.
             </p>
 
             <div class="hero-cta">
-              <!-- TODO: Ganti nomor WA dengan nomor aktif Anda (contoh: https://wa.me/6281234567890) -->
-              <a href="https://wa.me/62xxxxxxxxxx" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <a href="https://wa.me/6282138557552" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round">
                   <path
                     d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
                   </path>
                 </svg>
-                Hubungi Saya
+                <span data-i18n="hero.btn_contact">Hubungi Saya</span>
               </a>
 
               <a href="#proyek" class="btn btn-outline">
-                Lihat Karya
+                <span data-i18n="hero.btn_projects">Lihat Karya</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round">
                   <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -210,7 +250,7 @@
       <div class="container">
         <div class="quote-card reveal">
           <div class="quote-icon">“</div>
-          <p class="quote-text">
+          <p class="quote-text" data-i18n="quote.text">
             Coding memberi saya kemampuan untuk menciptakan, mengontrol, dan mengembangkan sesuatu dari nol.
           </p>
           <div class="quote-author">— Ghani</div>
@@ -226,8 +266,8 @@
       <div class="container">
 
         <div class="section-title-wrapper reveal">
-          <span class="section-subtitle">Tentang Diri & Skill</span>
-          <h2 class="section-title">Profil & Keahlian</h2>
+          <span class="section-subtitle" data-i18n="profile.subtitle">Tentang Diri & Skill</span>
+          <h2 class="section-title" data-i18n="profile.title">Profil & Keahlian</h2>
         </div>
 
         <div class="profile-skills-grid">
@@ -239,28 +279,28 @@
             </div>
 
             <h3 class="profile-name">Muhammad Ghani Aqila</h3>
-            <span class="profile-badge">Pelajar & Calon Developer</span>
+            <span class="profile-badge" data-i18n="profile.badge">Pelajar & Calon Developer</span>
 
             <ul class="profile-info-list">
               <li class="profile-info-item">
-                <span class="info-label">Status</span>
-                <span class="info-value">Pelajar</span>
+                <span class="info-label" data-i18n="profile.status_label">Status</span>
+                <span class="info-value" data-i18n="profile.status_val">Pelajar</span>
               </li>
               <li class="profile-info-item">
-                <span class="info-label">Sekolah</span>
-                <span class="info-value">SMK Telkom Purwokerto</span>
+                <span class="info-label" data-i18n="profile.school_label">Sekolah</span>
+                <span class="info-value" data-i18n="profile.school_val">SMK Telkom Purwokerto</span>
               </li>
               <li class="profile-info-item">
-                <span class="info-label">Jurusan</span>
-                <span class="info-value">PPLG</span>
+                <span class="info-label" data-i18n="profile.major_label">Jurusan</span>
+                <span class="info-value" data-i18n="profile.major_val">PPLG</span>
               </li>
               <li class="profile-info-item">
-                <span class="info-label">Kelas</span>
-                <span class="info-value">XI PPLG 1</span>
+                <span class="info-label" data-i18n="profile.class_label">Kelas</span>
+                <span class="info-value" data-i18n="profile.class_val">XI PPLG 1</span>
               </li>
               <li class="profile-info-item">
-                <span class="info-label">Domisili</span>
-                <span class="info-value">Purwokerto, Jawa Tengah</span>
+                <span class="info-label" data-i18n="profile.domicile_label">Domisili</span>
+                <span class="info-value" data-i18n="profile.domicile_val">Purwokerto, Jawa Tengah</span>
               </li>
             </ul>
           </div>
@@ -278,8 +318,7 @@
                 </svg>
               </div>
               <h4 class="skill-title">HTML, CSS, JavaScript</h4>
-              <p class="skill-desc">Dasar pengembangan web murni untuk membangun antarmuka web yang responsif dan
-                interaktif.</p>
+              <p class="skill-desc" data-i18n="skill.1_desc">Dasar pengembangan web murni untuk membangun antarmuka web yang responsif dan interaktif.</p>
             </div>
 
             <!-- Skill 2 -->
@@ -293,8 +332,7 @@
                 </svg>
               </div>
               <h4 class="skill-title">Web Development</h4>
-              <p class="skill-desc">Membangun website dari front-end dengan fokus pada struktur kode yang rapi dan
-                estetika visual.</p>
+              <p class="skill-desc" data-i18n="skill.2_desc">Membangun website dari front-end dengan fokus pada struktur kode yang rapi dan estetika visual.</p>
             </div>
 
             <!-- Skill 3 -->
@@ -309,8 +347,7 @@
                 </svg>
               </div>
               <h4 class="skill-title">UI/UX Design</h4>
-              <p class="skill-desc">Merancang antarmuka yang modern, intuitif, dan memberikan pengalaman pengguna yang
-                optimal.</p>
+              <p class="skill-desc" data-i18n="skill.3_desc">Merancang antarmuka yang modern, intuitif, dan memberikan pengalaman pengguna yang optimal.</p>
             </div>
 
             <!-- Skill 4 -->
@@ -326,8 +363,7 @@
                 </svg>
               </div>
               <h4 class="skill-title">Figma</h4>
-              <p class="skill-desc">Tools utama dalam melakukan perancangan wireframe, UI mockup, dan interactive
-                prototyping.</p>
+              <p class="skill-desc" data-i18n="skill.4_desc">Tools utama dalam melakukan perancangan wireframe, UI mockup, dan interactive prototyping.</p>
             </div>
 
             <!-- Skill 5 -->
@@ -341,8 +377,7 @@
                 </svg>
               </div>
               <h4 class="skill-title">Vibe Coding / AI-Assisted</h4>
-              <p class="skill-desc">Coding secara efisien dengan bantuan Artificial Intelligence untuk mempercepat alur
-                pengembangan.</p>
+              <p class="skill-desc" data-i18n="skill.5_desc">Coding secara efisien dengan bantuan Artificial Intelligence untuk mempercepat alur pengembangan.</p>
             </div>
 
             <!-- Skill 6 -->
@@ -358,11 +393,10 @@
                 </svg>
               </div>
               <h4 class="skill-title">Pemanfaatan AI untuk Web</h4>
-              <p class="skill-desc">Eksplorasi integrasi teknologi AI modern ke dalam solusi dan aplikasi berbasis web.
-              </p>
+              <p class="skill-desc" data-i18n="skill.6_desc">Eksplorasi integrasi teknologi AI modern ke dalam solusi dan aplikasi berbasis web.</p>
             </div>
 
-            <!-- Skill 7 (Full width span if needed or 7th item) -->
+            <!-- Skill 7 -->
             <div class="skill-card reveal delay-1" style="grid-column: span 2;">
               <div class="skill-icon-box">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -373,8 +407,7 @@
                 </svg>
               </div>
               <h4 class="skill-title">Basic Graphic Design</h4>
-              <p class="skill-desc">Pembuatan dan pengolahan elemen visual dekoratif pendukung untuk kebutuhan branding
-                dan aset digital.</p>
+              <p class="skill-desc" data-i18n="skill.7_desc">Pembuatan dan pengolahan elemen visual dekoratif pendukung untuk kebutuhan branding dan aset digital.</p>
             </div>
 
           </div>
@@ -392,8 +425,8 @@
       <div class="container">
 
         <div class="section-title-wrapper reveal">
-          <span class="section-subtitle">Latar Belakang Akademis</span>
-          <h2 class="section-title">Riwayat Pendidikan</h2>
+          <span class="section-subtitle" data-i18n="edu.subtitle">Latar Belakang Akademis</span>
+          <h2 class="section-title" data-i18n="edu.title">Riwayat Pendidikan</h2>
         </div>
 
         <div class="education-timeline">
@@ -403,7 +436,7 @@
             <div class="edu-dot"></div>
             <div class="edu-card">
               <h3 class="edu-school">SMK Telkom Purwokerto</h3>
-              <p class="edu-major">Pengembangan Perangkat Lunak dan Gim (PPLG)</p>
+              <p class="edu-major" data-i18n="edu.smk_major">Pengembangan Perangkat Lunak dan Gim (PPLG)</p>
             </div>
           </div>
 
@@ -412,7 +445,7 @@
             <div class="edu-dot"></div>
             <div class="edu-card">
               <h3 class="edu-school">SMP Telkom Purwokerto</h3>
-              <p class="edu-major">Sekolah Menengah Pertama</p>
+              <p class="edu-major" data-i18n="edu.smp_major">Sekolah Menengah Pertama</p>
             </div>
           </div>
 
@@ -421,7 +454,7 @@
             <div class="edu-dot"></div>
             <div class="edu-card">
               <h3 class="edu-school">SD Islam Al-Azhar 39 Purwokerto</h3>
-              <p class="edu-major">Sekolah Dasar</p>
+              <p class="edu-major" data-i18n="edu.sd_major">Sekolah Dasar</p>
             </div>
           </div>
 
@@ -438,36 +471,35 @@
       <div class="container">
 
         <div class="section-title-wrapper reveal">
-          <span class="section-subtitle">Mengenal Lebih Dekat</span>
-          <h2 class="section-title">Tentang Saya</h2>
+          <span class="section-subtitle" data-i18n="about.subtitle">Mengenal Lebih Dekat</span>
+          <h2 class="section-title" data-i18n="about.title">Tentang Saya</h2>
         </div>
 
         <div class="about-grid">
 
           <!-- Left: Narrative & Stats -->
           <div class="about-text-content reveal delay-1">
-            <h3 class="about-heading">Halo, Saya Ghani</h3>
-            <p class="about-paragraph">
+            <h3 class="about-heading" data-i18n="about.heading">Halo, Saya Ghani</h3>
+            <p class="about-paragraph" data-i18n="about.paragraph">
               Hi, saya Ghani, seorang pelajar yang tertarik dengan dunia teknologi, khususnya web development, UI/UX,
               dan artificial intelligence. Saya senang mengeksplorasi berbagai teknologi baru dan mengembangkan ide
               menjadi sebuah karya digital.
             </p>
 
             <div class="stats-grid">
-              <!-- TODO: Ganti angka [X]+ dengan statistik nyata Anda -->
               <div class="stat-box">
                 <div class="stat-number">5+</div>
-                <div class="stat-label">Teknologi Dipelajari</div>
+                <div class="stat-label" data-i18n="about.stat_tech">Teknologi Dipelajari</div>
               </div>
 
               <div class="stat-box">
                 <div class="stat-number">10+</div>
-                <div class="stat-label">Proyek Dikerjakan</div>
+                <div class="stat-label" data-i18n="about.stat_projects">Proyek Dikerjakan</div>
               </div>
 
               <div class="stat-box">
                 <div class="stat-number">6+</div>
-                <div class="stat-label">Tools Dikuasai</div>
+                <div class="stat-label" data-i18n="about.stat_tools">Tools Dikuasai</div>
               </div>
             </div>
           </div>
@@ -476,7 +508,7 @@
           <div class="about-vision-card reveal delay-2">
             <div class="quote-card" style="margin: 0; text-align: left;">
               <div class="quote-icon" style="margin-bottom: 0.5rem;">“</div>
-              <p class="quote-text" style="font-size: 1.15rem;">
+              <p class="quote-text" style="font-size: 1.15rem;" data-i18n="about.quote">
                 Setiap baris kode adalah langkah kecil untuk mewujudkan ide besar yang bermanfaat bagi masa depan.
               </p>
               <div class="quote-author" style="margin-top: 1rem;">— Ghani Aqila</div>
@@ -496,43 +528,40 @@
       <div class="container">
 
         <div class="section-title-wrapper reveal">
-          <span class="section-subtitle">Jejak Langkah & Milestone</span>
-          <h2 class="section-title">Perjalananku</h2>
+          <span class="section-subtitle" data-i18n="journey.subtitle">Jejak Langkah & Milestone</span>
+          <h2 class="section-title" data-i18n="journey.title">Perjalananku</h2>
         </div>
 
         <div class="journey-timeline-wrapper">
           <div class="journey-center-line"></div>
-
-          <!-- TODO: Ganti tahun [Tahun] di bawah sesuai timeline pribadi Anda -->
 
           <!-- Timeline 1 -->
           <div class="journey-item reveal delay-1">
             <div class="journey-dot"></div>
             <div class="journey-card">
               <span class="journey-year">2022</span>
-              <h3 class="journey-title">Awal Mula</h3>
-              <p class="journey-desc">Mulai tertarik dengan dunia coding dan teknologi digital.</p>
-            </div>
-          </div>
-
-
-          <!-- Timeline 3 -->
-          <div class="journey-item reveal delay-1">
-            <div class="journey-dot"></div>
-            <div class="journey-card">
-              <span class="journey-year">2022</span>
-              <h3 class="journey-title">Eksplorasi Desain</h3>
-              <p class="journey-desc">Mulai belajar Figma dan prinsip dasar UI/UX design untuk membangun antarmuka.</p>
+              <h3 class="journey-title" data-i18n="journey.1_title">Awal Mula</h3>
+              <p class="journey-desc" data-i18n="journey.1_desc">Mulai tertarik dengan dunia coding dan teknologi digital.</p>
             </div>
           </div>
 
           <!-- Timeline 2 -->
+          <div class="journey-item reveal delay-1">
+            <div class="journey-dot"></div>
+            <div class="journey-card">
+              <span class="journey-year">2022</span>
+              <h3 class="journey-title" data-i18n="journey.2_title">Eksplorasi Desain</h3>
+              <p class="journey-desc" data-i18n="journey.2_desc">Mulai belajar Figma dan prinsip dasar UI/UX design untuk membangun antarmuka.</p>
+            </div>
+          </div>
+
+          <!-- Timeline 3 -->
           <div class="journey-item reveal delay-2">
             <div class="journey-dot"></div>
             <div class="journey-card">
               <span class="journey-year">2024</span>
-              <h3 class="journey-title">Belajar Dasar</h3>
-              <p class="journey-desc">Mempelajari HTML, CSS, dan JavaScript secara mandiri.</p>
+              <h3 class="journey-title" data-i18n="journey.3_title">Belajar Dasar</h3>
+              <p class="journey-desc" data-i18n="journey.3_desc">Mempelajari HTML, CSS, dan JavaScript secara mandiri.</p>
             </div>
           </div>
 
@@ -541,9 +570,8 @@
             <div class="journey-dot"></div>
             <div class="journey-card">
               <span class="journey-year">2025</span>
-              <h3 class="journey-title">Masuk PPLG</h3>
-              <p class="journey-desc">Bergabung di jurusan Pengembangan Perangkat Lunak dan Gim, SMK Telkom Purwokerto.
-              </p>
+              <h3 class="journey-title" data-i18n="journey.4_title">Masuk PPLG</h3>
+              <p class="journey-desc" data-i18n="journey.4_desc">Bergabung di jurusan Pengembangan Perangkat Lunak dan Gim, SMK Telkom Purwokerto.</p>
             </div>
           </div>
 
@@ -552,9 +580,8 @@
             <div class="journey-dot"></div>
             <div class="journey-card">
               <span class="journey-year">2026</span>
-              <h3 class="journey-title">Sekarang</h3>
-              <p class="journey-desc">Mengeksplorasi AI-assisted coding (vibe coding) untuk mempercepat pembuatan proyek
-                web modern.</p>
+              <h3 class="journey-title" data-i18n="journey.5_title">Sekarang</h3>
+              <p class="journey-desc" data-i18n="journey.5_desc">Mengeksplorasi AI-assisted coding (vibe coding) untuk mempercepat pembuatan proyek web modern.</p>
             </div>
           </div>
 
@@ -571,8 +598,8 @@
       <div class="container">
 
         <div class="section-title-wrapper reveal">
-          <span class="section-subtitle">Showcase Portofolio</span>
-          <h2 class="section-title">Proyek & Karya</h2>
+          <span class="section-subtitle" data-i18n="projects.subtitle">Showcase Portofolio</span>
+          <h2 class="section-title" data-i18n="projects.title">Proyek & Karya</h2>
         </div>
 
         <div class="projects-grid">
@@ -584,8 +611,7 @@
             </div>
             <div class="project-body">
               <h3 class="project-title">AERIS - Personal Weather</h3>
-              <p class="project-desc">Aplikasi pemantau cuaca personal dengan tampilan modern yang menyajikan suhu
-                real-time, kondisi cuaca, kelembaban, dan prakiraan cuaca jam-jaman.</p>
+              <p class="project-desc" data-i18n="projects.1_desc">Aplikasi pemantau cuaca personal dengan tampilan modern yang menyajikan suhu real-time, kondisi cuaca, kelembaban, dan prakiraan cuaca jam-jaman.</p>
               <div class="project-tags">
                 <span class="tag">Web App</span>
                 <span class="tag">Weather API</span>
@@ -593,8 +619,8 @@
                 <span class="tag">JavaScript</span>
               </div>
               <div class="project-actions">
-                <a href="#" class="btn btn-outline btn-sm">Lihat Demo</a>
-                <a href="#" class="btn btn-outline btn-sm">Kode Sumber</a>
+                <a href="#" class="btn btn-outline btn-sm" data-i18n="projects.btn_demo">Lihat Demo</a>
+                <a href="#" class="btn btn-outline btn-sm" data-i18n="projects.btn_code">Kode Sumber</a>
               </div>
             </div>
           </div>
@@ -606,8 +632,7 @@
             </div>
             <div class="project-body">
               <h3 class="project-title">POWERFIT - Premium Gym Web</h3>
-              <p class="project-desc">Website landing page pusat kebugaran modern dengan tampilan dark-gold eksklusif,
-                fitur pendaftaran membership, dan katalog program latihan interaktif.</p>
+              <p class="project-desc" data-i18n="projects.2_desc">Website landing page pusat kebugaran modern dengan tampilan dark-gold eksklusif, fitur pendaftaran membership, dan katalog program latihan interaktif.</p>
               <div class="project-tags">
                 <span class="tag">Landing Page</span>
                 <span class="tag">UI/UX Design</span>
@@ -615,13 +640,13 @@
                 <span class="tag">JavaScript</span>
               </div>
               <div class="project-actions">
-                <a href="#" class="btn btn-outline btn-sm">Lihat Demo</a>
-                <a href="#" class="btn btn-outline btn-sm">Kode Sumber</a>
+                <a href="#" class="btn btn-outline btn-sm" data-i18n="projects.btn_demo">Lihat Demo</a>
+                <a href="#" class="btn btn-outline btn-sm" data-i18n="projects.btn_code">Kode Sumber</a>
               </div>
             </div>
           </div>
 
-          <!-- TODO: Ganti dengan proyekmu - Card Proyek 3 -->
+          <!-- Card Proyek 3 -->
           <div class="project-card reveal delay-1" style="grid-column: span 2;">
             <div class="project-thumb">
               <svg class="project-thumb-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -633,17 +658,15 @@
             </div>
             <div class="project-body">
               <h3 class="project-title">Project Showcase #3 (AI Powered Web App)</h3>
-              <p class="project-desc">Eksplorasi eksperimental aplikasi web berbasis kecerdasan buatan (AI) menggunakan
-                teknik vibe coding dan integrasi API AI modern.</p>
+              <p class="project-desc" data-i18n="projects.3_desc">Eksplorasi eksperimental aplikasi web berbasis kecerdasan buatan (AI) menggunakan teknik vibe coding dan integrasi API AI modern.</p>
               <div class="project-tags">
                 <span class="tag">AI Integration</span>
                 <span class="tag">Vanilla JS</span>
                 <span class="tag">Dark Tech UI</span>
               </div>
               <div class="project-actions">
-                <!-- TODO: Ganti link demo dan repository proyek Anda -->
-                <a href="#" class="btn btn-outline btn-sm">Lihat Demo</a>
-                <a href="#" class="btn btn-outline btn-sm">Kode Sumber</a>
+                <a href="#" class="btn btn-outline btn-sm" data-i18n="projects.btn_demo">Lihat Demo</a>
+                <a href="#" class="btn btn-outline btn-sm" data-i18n="projects.btn_code">Kode Sumber</a>
               </div>
             </div>
           </div>
@@ -660,16 +683,15 @@
     <section class="contact-section section" id="kontak">
       <div class="container">
         <div class="contact-box reveal">
-          <span class="section-subtitle">Get In Touch</span>
-          <h2 class="section-title" style="margin-bottom: 1.5rem;">Mari Terhubung</h2>
+          <span class="section-subtitle" data-i18n="contact.subtitle">Get In Touch</span>
+          <h2 class="section-title" style="margin-bottom: 1.5rem;" data-i18n="contact.title">Mari Terhubung</h2>
 
-          <p class="contact-desc">
+          <p class="contact-desc" data-i18n="contact.desc">
             Tertarik untuk berkolaborasi, berdiskusi mengenai proyek web, UI/UX, atau sekadar menyapa? Jangan ragu untuk
             menghubungi saya!
           </p>
 
           <div class="social-links">
-            <!-- TODO: Ganti link WhatsApp dengan nomor Anda -->
             <a href="https://wa.me/6282138557552" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
@@ -680,7 +702,6 @@
               WhatsApp
             </a>
 
-            <!-- TODO: Ganti username Instagram Anda -->
             <a href="https://instagram.com/ghani_aqilaaa" target="_blank" rel="noopener noreferrer"
               class="btn btn-outline">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -692,7 +713,6 @@
               Instagram
             </a>
 
-            <!-- TODO: Ganti username TikTok Anda -->
             <a href="https://tiktok.com/@ganigani2112" target="_blank" rel="noopener noreferrer"
               class="btn btn-outline">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -702,7 +722,6 @@
               TikTok
             </a>
 
-            <!-- TODO: Ganti username GitHub Anda -->
             <a href="https://github.com/MuhammadGhaniAqila" target="_blank" rel="noopener noreferrer"
               class="btn btn-outline">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -724,7 +743,42 @@
     </section>
   </main>
 
+  <!-- ==========================================
+       FLOATING MUSIC PLAYER WIDGET (BOTTOM RIGHT)
+       ========================================== -->
+  <div class="music-player-widget" id="music-player-widget" aria-label="Pemutar Musik Latar Belakang">
+    <audio id="bg-audio" loop src="assets/audio/Kuning.mp3" autoplay preload="auto"></audio>
+
+    <div class="music-player-content">
+      <div class="widget-vinyl-wrapper" id="widget-vinyl-wrapper" title="Kuning - rumahsakit">
+        <div class="widget-vinyl-record">
+          <div class="vinyl-groove-ring"></div>
+          <img src="assets/images/rumahsakit-kuning.jpg" alt="Kuning - rumahsakit" class="widget-album-art">
+          <div class="vinyl-center-pin"></div>
+        </div>
+      </div>
+
+      <div class="widget-song-info">
+        <span class="widget-song-title" id="widget-song-title">Kuning</span>
+        <span class="widget-song-status" id="widget-song-status">rumahsakit</span>
+      </div>
+
+      <button class="widget-play-btn" id="widget-play-btn" aria-label="Putar / Jeda Musik">
+        <!-- Play Icon (▶) -->
+        <svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        <!-- Pause Icon (❚❚) -->
+        <svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+          <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <!-- JavaScript Files -->
+  <script src="js/i18n.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/script.js"></script>
 </body>
