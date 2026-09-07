@@ -93,7 +93,7 @@
       'projects.title': 'Proyek & Karya',
       'projects.1_desc': 'Aplikasi pemantau cuaca personal dengan tampilan modern yang menyajikan suhu real-time, kondisi cuaca, kelembaban, dan prakiraan cuaca jam-jaman.',
       'projects.2_desc': 'Website landing page pusat kebugaran modern dengan tampilan dark-gold eksklusif, fitur pendaftaran membership, dan katalog program latihan interaktif.',
-      'projects.3_desc': 'Eksplorasi eksperimental aplikasi web berbasis kecerdasan buatan (AI) menggunakan teknik vibe coding dan integrasi API AI modern.',
+      'projects.3_desc': 'Platform marketplace khusus jualan barang otentik Nusantara, menghubungkan Anda secara langsung dengan maestro pengrajin & UMKM lokal dari Sabang sampai Merauke.',
       'projects.btn_demo': 'Lihat Demo',
       'projects.btn_code': 'Kode Sumber',
 
@@ -185,7 +185,7 @@
       'projects.title': 'Featured Projects',
       'projects.1_desc': 'Personal weather monitoring app featuring real-time temperature, weather conditions, humidity, and hourly forecasts.',
       'projects.2_desc': 'Modern fitness center landing page with exclusive dark-gold aesthetic, membership registration, and interactive workout catalog.',
-      'projects.3_desc': 'Experimental AI-powered web app leveraging vibe coding techniques and modern AI API integrations.',
+      'projects.3_desc': 'A specialized marketplace platform for authentic Indonesian heritage crafts, connecting buyers directly with master artisans & local SMBs from Sabang to Merauke.',
       'projects.btn_demo': 'Live Demo',
       'projects.btn_code': 'Source Code',
 
