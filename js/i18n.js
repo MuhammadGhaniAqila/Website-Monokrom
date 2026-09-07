@@ -1,6 +1,6 @@
 /* ==========================================================================
    PORTFOLIO WEBSITE - INTERNATIONALIZATION (i18n) ENGINE
-   Languages Supported: Indonesian (id), English (en), Javanese (jv)
+   Languages Supported: Indonesian (id), English (en)
    ========================================================================== */
 
 (function () {
@@ -193,98 +193,6 @@
       'contact.subtitle': 'Get In Touch',
       'contact.title': 'Let\'s Connect',
       'contact.desc': 'Interested in collaborating, discussing web projects, UI/UX design, or just saying hi? Feel free to reach out!'
-    },
-
-    jv: {
-      // Navbar & General
-      'nav.about': 'Babagan',
-      'nav.skills': 'Profil & Katrampilan',
-      'nav.education': 'Pendidikan',
-      'nav.journey': 'Lakon Hidup',
-      'nav.projects': 'Proyek',
-      'nav.contact': 'Kontak',
-
-      // Loading Screen
-      'loader.welcome': 'Sugeng Rawuh Wonten',
-      'loader.title': 'PORTOFOLIO GHANI',
-
-      // Hero Section
-      'hero.greeting': 'Sugeng Rawuh, Kula',
-      'hero.desc': 'Kula punika murid ingkang remen babagan teknologi, mliginipun web development, desain UI/UX, lan kecerdasan buatan (AI). Remen nyoba teknologi anyar lan ngowahi ide dados karya digital.',
-      'hero.btn_contact': 'Hubungi Kula',
-      'hero.btn_projects': 'Ndeleng Karya',
-
-      // Quote Section
-      'quote.text': 'Koding menehi kula kabisan kanggo nyiptakake, ngatur, lan mbangun samubarang saka nol.',
-
-      // Profile & Skills Section
-      'profile.subtitle': 'Babagan Kula & Katrampilan',
-      'profile.title': 'Profil & Katrampilan',
-      'profile.badge': 'Murid & Calon Developer',
-      'profile.status_label': 'Status',
-      'profile.status_val': 'Murid',
-      'profile.school_label': 'Sekolah',
-      'profile.school_val': 'SMK Telkom Purwokerto',
-      'profile.major_label': 'Jurusan',
-      'profile.major_val': 'PPLG',
-      'profile.class_label': 'Kelas',
-      'profile.class_val': 'XI PPLG 1',
-      'profile.domicile_label': 'Panggenan',
-      'profile.domicile_val': 'Purwokerto, Jawa Tengah',
-
-      // Skills Card Descriptions
-      'skill.1_desc': 'Pondasi dasar pangembangan web murni kagem mbangun tampilan web ingkang responsif lan interaktif.',
-      'skill.2_desc': 'Mbangun website saka front-end kanthi fokus ing struktur kode ingkang rapi lan kaendahan visual.',
-      'skill.3_desc': 'Ngrancang tampilan ingkang modern, gampil digunakake, lan menehi pengalaman pangguna ingkang paling sae.',
-      'skill.4_desc': 'Piranti utama kagem ngrancang wireframe, UI mockup, lan prototyping interaktif.',
-      'skill.5_desc': 'Koding kanthi efisien kabantu dening AI kagem nyepetake proses pangembangan.',
-      'skill.6_desc': 'Njelajahi integrasi teknologi AI modern wonten ing aplikasi lan solusi berbasis web.',
-      'skill.7_desc': 'Nggawe lan ngolah elemen visual dekoratif kagem kaperluan branding lan aset digital.',
-
-      // Education Section
-      'edu.subtitle': 'Riwayat Akademis',
-      'edu.title': 'Riwayat Pendidikan',
-      'edu.smk_major': 'Pengembangan Perangkat Lunak dan Gim (PPLG)',
-      'edu.smp_major': 'Sekolah Menengah Pertama',
-      'edu.sd_major': 'Sekolah Dasar',
-
-      // About Section
-      'about.subtitle': 'Tepangaken Luwih Cerak',
-      'about.title': 'Babagan Kula',
-      'about.heading': 'Sugeng Rawuh, Kula Ghani',
-      'about.paragraph': 'Sugeng rawuh, kula Ghani, murid ingkang seneng babagan teknologi web, UI/UX, lan AI. Kula seneng nyoba ingkang anyar lan ngembangaken gagasan dados karya digital.',
-      'about.stat_tech': 'Teknologi Disinaoni',
-      'about.stat_projects': 'Proyek Digarap',
-      'about.stat_tools': 'Piranti Dikuasai',
-      'about.quote': 'Saben larik kode yaiku langkah cilik kagem ngwujudake ide gedhe ing masa depan.',
-
-      // Journey Section
-      'journey.subtitle': 'Jejak Langkah & Sejarah',
-      'journey.title': 'Lakon Hidup',
-      'journey.1_title': 'Awal Mula',
-      'journey.1_desc': 'Mulai remen kalayan donya koding lan teknologi digital.',
-      'journey.2_title': 'Eksplorasi Desain',
-      'journey.2_desc': 'Mulai sinau Figma lan prinsip dasar UI/UX design kagem mbangun antarmuka.',
-      'journey.3_title': 'Sinau Dasar',
-      'journey.3_desc': 'Ngepos sinau HTML, CSS, lan JavaScript kanthi mandiri.',
-      'journey.4_title': 'Mlebet PPLG',
-      'journey.4_desc': 'Nggabung wonten jurusan Pengembangan Perangkat Lunak lan Gim, SMK Telkom Purwokerto.',
-      'journey.5_title': 'Sakmenika',
-      'journey.5_desc': 'Njelajahi AI-assisted coding (vibe coding) kagem nyepetake panggawenan proyek web modern.',
-
-      // Projects Section
-      'projects.subtitle': 'Tontonan Portofolio',
-      'projects.title': 'Proyek & Karya',
-      'projects.1_desc': 'Aplikasi pemantau cuaca personal kanthi tampilan modern ingkang nyajikake hawa real-time, kondisi cuaca, lan prakiraan cuaca jam-jaman.',
-      'projects.2_desc': 'Website landing page pusat kebugaran modern kanthi tampilan dark-gold eksklusif, fitur pendaftaran membership, lan katalog program latihan.',
-      'projects.3_desc': 'Eksplorasi aplikasi web berbasis AI nggunakake teknik vibe coding lan integrasi API AI modern.',
-      'projects.btn_demo': 'Ndeleng Demo',
-      'projects.btn_code': 'Kode Sumber',
-
-      // Contact Section
-      'contact.subtitle': 'Ayo Srawung',
-      'contact.title': 'Kirim Pesen & Diskusi',
-      'contact.desc': 'Remen rembagan proyek web, UI/UX, utawi namung badhe srawung? Mangga hubungi kula!'
     }
   };
 
@@ -303,13 +211,6 @@
       "Web Developer.",
       "UI/UX Enthusiast.",
       "AI Explorer."
-    ],
-    jv: [
-      "Muhammad Ghani Aqila.",
-      "Murid SMK Telkom.",
-      "Pengembang Web.",
-      "Parembag UI/UX.",
-      "Penjelajah AI."
     ]
   };
 
@@ -318,7 +219,7 @@
    */
   function getSavedLanguage() {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && (saved === 'id' || saved === 'en' || saved === 'jv')) {
+    if (saved && (saved === 'id' || saved === 'en')) {
       return saved;
     }
     return DEFAULT_LANG;
@@ -328,7 +229,7 @@
    * Terapkan bahasa yang dipilih ke seluruh dokumen DOM
    */
   function setLanguage(lang) {
-    const currentLang = (lang === 'en' || lang === 'jv') ? lang : 'id';
+    const currentLang = (lang === 'en') ? 'en' : 'id';
     document.documentElement.setAttribute('lang', currentLang);
     localStorage.setItem(STORAGE_KEY, currentLang);
 
@@ -364,11 +265,6 @@
         btn.setAttribute('aria-pressed', 'false');
       }
     });
-
-    const activeCodeLabel = document.getElementById('current-lang-code');
-    if (activeCodeLabel) {
-      activeCodeLabel.textContent = currentLang.toUpperCase();
-    }
   }
 
   // Expose API Global
